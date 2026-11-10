@@ -6,6 +6,10 @@ Jung Ji-so plays the teenage Moon Dong-eun in *The Glory*. If she looks familiar
 
 Coming back to *The Remarried Empress* after a break? The [episode 1 recap](https://mydramadb.com/shows/the-remarried-empress/episodes/1/1) covers the hunt and the messenger bird in three sentences. If you want the making-of video, [Disney Plus Korea's posts about the show](https://mydramadb.com/shows/the-remarried-empress/social) include its announcement and a link to the original post.
 
+## Read an episode summary in Korean
+
+Who is looking for the sword in *Alchemy of Souls*? The Korean sentence leaves out the subject. Try the [one-page worksheet (PDF)](https://raw.githubusercontent.com/MyDramaDB/.github/main/profile/resources/alchemy-of-souls-korean-reading.pdf) before you check the English version. The worksheet includes three questions and an answer key. [Read the Korean episode summary](https://mydramadb.com/ko/shows/alchemy-of-souls/episodes/1/2)
+
 ## Look up Korean dramas with MCP
 
 Connect your client to `https://mydramadb.com/mcp` using Streamable HTTP. You can look up a cast or episode without an account or API key. To try it, ask “Who plays Moon Dong-eun in *The Glory*?” [Setup instructions](https://mydramadb.com/connect)
