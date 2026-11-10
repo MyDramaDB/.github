@@ -1,0 +1,36 @@
+name: Publish MyDramaDB 0.1.0 to the MCP Registry
+
+on:
+  push:
+    branches: [codex/registry-mydramadb-0.1.0]
+
+permissions: {}
+
+jobs:
+  publish:
+    if: github.repository == 'MyDramaDB/.github' && github.event.created
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6
+      - name: Verify publisher and publish the public manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          release=https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1
+          archive=mcp-publisher_linux_amd64.tar.gz
+          curl -fsSL "$release/$archive" -o "$archive"
+          curl -fsSL "$release/$archive.sigstore.json" -o "$archive.sigstore.json"
+          echo "a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc  $archive" | sha256sum --check
+          cosign verify-blob --bundle "$archive.sigstore.json" \
+            --certificate-identity 'https://github.com/modelcontextprotocol/registry/.github/workflows/release.yml@refs/tags/v1.8.1' \
+            --certificate-oidc-issuer 'https://token.actions.githubusercontent.com' "$archive"
+          tar -xzf "$archive" mcp-publisher
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish
